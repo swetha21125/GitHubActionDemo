@@ -9,6 +9,9 @@ jobs:
   get-time:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Fetch Current Time from World Time API
         run: |
           response=$(curl -s "http://worldtimeapi.org/api/timezone/Etc/UTC")
