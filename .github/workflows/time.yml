@@ -1,0 +1,17 @@
+name: Display Time via API
+
+on:
+  workflow_dispatch:  # Manual trigger for the action
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour, you can adjust the schedule
+
+jobs:
+  get-time:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Current Time from World Time API
+        run: |
+          response=$(curl -s "http://worldtimeapi.org/api/timezone/Etc/UTC")
+          echo "API Response: $response"
+          current_time=$(echo $response | jq '.datetime')
+          echo "Current Time: $current_time"
