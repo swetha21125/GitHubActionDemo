@@ -1,0 +1,27 @@
+name: Run Python Script with Inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      input1:
+        description: "First input value"
+        required: true
+        default: "0"
+      input2:
+        description: "Second input value"
+        required: true
+        default: "0"
+
+jobs:
+  execute-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Installs Python 3.x
+
+      - name: Run Python script with inputs
+        run: |
+          python operations.py ${{ github.event.inputs.input1 }} ${{ github.event.inputs.input2 }}
