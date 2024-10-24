@@ -1,24 +1,8 @@
-name: Python Math Operations
-
-on:
-  workflow_dispatch:  # Manually trigger the workflow
-
+name: hello-world
+on: push
 jobs:
-  run-python-script:
-    runs-on: ubuntu-latest  # Use the Ubuntu environment
-
+  my-job:
+    runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository code
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Step 2: Set up Python environment
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'  # Use Python 3.x
-
-      # Step 3: Run the Python script
-      - name: Run Python Script
-        run: |
-          echo "3\n2" | python math_operations.py  # Provide inputs (3 and 2) through a pipe
+      - name: my-step
+        run: echo "Hello World!"
