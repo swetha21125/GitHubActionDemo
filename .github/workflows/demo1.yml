@@ -21,4 +21,4 @@ jobs:
       # Step 3: Run the Python script
       - name: Run Python Script
         run: |
-          echo "3\n2" | python python.py  # Provide inputs (3 and 2) through a pipe
+          echo "3\n2" | python math_operations.py  # Provide inputs (3 and 2) through a pipe
