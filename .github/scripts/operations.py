@@ -1,24 +1,26 @@
-import sys
+name: Run Python Script with Inputs
 
-def perform_operations(input1, input2):
-    print(f"Input 1: {input1}")
-    print(f"Input 2: {input2}")
-    
-    # Perform basic arithmetic operations
-    sum_result = float(input1) + float(input2)
-    difference_result = float(input1) - float(input2)
-    product_result = float(input1) * float(input2)
-    
-    print(f"Sum: {sum_result}")
-    print(f"Difference: {difference_result}")
-    print(f"Product: {product_result}")
+on:
+  workflow_dispatch:
+    inputs:
+      input1:
+        description: "First input value"
+        required: true
+        default: "0"
+      input2:
+        description: "Second input value"
+        required: true
+        default: "0"
 
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Please provide exactly two inputs.")
-        sys.exit(1)
-    
-    input1 = sys.argv[1]
-    input2 = sys.argv[2]
-    
-    perform_operations(input1, input2)
+jobs:
+  execute-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Installs Python 3.x
+
+      - name: Run Python script with inputs
+        run: python .github/scripts/operations.py ${{ github.event.inputs.input1 }} ${{ github.event.inputs.input2 }}
